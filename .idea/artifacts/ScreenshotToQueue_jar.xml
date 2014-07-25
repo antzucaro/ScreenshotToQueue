@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ScreenshotToQueue:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ScreenshotToQueue_jar</output-path>
+    <root id="archive" name="ScreenshotToQueue.jar">
+      <element id="module-output" name="ScreenshotToQueue" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../Libraries/commons-configuration-1.10.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../Libraries/commons-lang-2.6.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../Libraries/commons-logging-1.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/xonotic/demorecorder/NexuizDemoRecorder-0.3.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
