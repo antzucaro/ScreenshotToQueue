@@ -23,10 +23,15 @@ public class FragScreenshot implements Comparable<FragScreenshot> {
     private float startSecond;
     private float endSecond;
 
-    public FragScreenshot(String filename) {
+    // the overall duration of the clips to generate. used to calculate startSecond
+    private float clipDuration;
+
+    public FragScreenshot(String filename, float clipDuration) {
         this.path = filename;
 
         int lastSlash = filename.lastIndexOf('/');
+
+        this.clipDuration = clipDuration;
 
         if (lastSlash > -1) {
             this.filename = filename.substring(lastSlash+1);
@@ -55,7 +60,7 @@ public class FragScreenshot implements Comparable<FragScreenshot> {
             this.endSecond = Float.parseFloat(m.group(2)) + 3f;
 
             // make the starting second 10s before the end
-            this.startSecond = this.endSecond - 10.0f;
+            this.startSecond = this.endSecond - this.clipDuration;
 
             // and finally, the key is based on the above parsed date
             SimpleDateFormat f = new SimpleDateFormat("yyyyMMdd");
@@ -122,7 +127,7 @@ public class FragScreenshot implements Comparable<FragScreenshot> {
     }
 
     public static void main(String[] args) {
-        FragScreenshot f = new FragScreenshot("final_rage_duel_v2-548.133423-20140621234048-00.jpg");
+        FragScreenshot f = new FragScreenshot("final_rage_duel_v2-548.133423-20140621234048-00.jpg", 10.0f);
         System.out.println(f.getMapName());
         System.out.println(f.getDateTime());
         System.out.println(f.getEndSecond());

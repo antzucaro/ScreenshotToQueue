@@ -25,9 +25,12 @@ public class ScreenshotToQueue {
         // for every demo file we find in the path
         List<Demo> demos = getDemos(config.getString("paths.demos"));
 
+        // the default duration of a clip
+        float clipDuration = config.getFloat("clipDuration");
+
         // using the screenshot path from the config, create screenshot instances
         // for every screenshot file we find in the path
-        List<FragScreenshot> screenshots = getScreenshots(config.getString("paths.screenshots"));
+        List<FragScreenshot> screenshots = getScreenshots(config.getString("paths.screenshots"), clipDuration);
 
         // index the demos by date (using a key string of "YYYYMMDD")
         HashMap<String, List<Demo>> indexedDemos = indexDemos(demos);
@@ -67,7 +70,7 @@ public class ScreenshotToQueue {
         return demos;
     }
 
-    public static List<FragScreenshot> getScreenshots(String path) {
+    public static List<FragScreenshot> getScreenshots(String path, float clipDuration) {
         File dir = new File(path);
         File[] listing = dir.listFiles();
 
@@ -77,7 +80,7 @@ public class ScreenshotToQueue {
             for (File f : listing) {
                 if (f.getName().endsWith("jpg")) {
                     try {
-                        FragScreenshot ss = new FragScreenshot(f.getName());
+                        FragScreenshot ss = new FragScreenshot(f.getName(), clipDuration);
                         screenshots.add(ss);
                     } catch(IllegalArgumentException e) {
                         System.out.println("Could not parse screenshot "
